@@ -1,0 +1,134 @@
+.App {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.open-modal-btn {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-2px);
+    background-color: rgb(159, 159, 159);
+    transition: 0.3s;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal {
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 15px;
+  box-shadow: 0 10px 1000px rgba(0, 0, 0, 0.5);
+  background-color: rgb(255, 255, 255);
+  transform: translateY(-30%);
+  opacity: 0;
+  transition: all 0.3s ease 0.2s;
+  position: relative;
+
+  .overlay.show & {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.image {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: rgb(0, 0, 0);
+  &:hover {
+    color: gray;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+}
+
+
+.quiz-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+}
+
+.question-step {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-option {
+  padding: 8px 16px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+}
+
+.results {
+  padding: 20px;
+  
+  h3 {
+    margin-bottom: 15px;
+  }
+  
+  p {
+    margin: 8px 0;
+    font-size: 16px;
+  }
+}
+
+.btn-close {
+  margin-top: 20px;
+  padding: 8px 20px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  
+  &:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+}
