@@ -6,28 +6,20 @@ function App() {
   const [answers, setAnswers] = React.useState({});
 
   const questions = [
-    { id: 1, 
-      text: "React — это круто?", 
-      correct: "Да" 
-    },
-    { id: 2, 
-      text: "Хуки — удобны?", 
-      correct: "Да" 
-    }
+    { id: 1, text: "React — это круто?", correct: "Да" },
+    { id: 2, text: "Хуки — удобны?", correct: "Да" }
   ];
 
-  const handleAnswer = (questionId, answer) => {
-  // 1. Обновляем объект answers:
-  const newAnswers = {
-    ...answers,          // Копируем старые ответы
-    [questionId]: answer // Добавляем/обновляем ответ для текущего вопроса
-  };
-  setAnswers(newAnswers); // Сохраняем в состояние
+  const currentQuestion = questions[step - 1];
 
-  // 2. Переключаем на следующий шаг:
-  const nextStep = step + 1;
-  setStep(nextStep);
-};
+  const handleAnswer = (questionId, answer) => {
+    const newAnswers = {
+      ...answers,
+      [questionId]: answer
+    };
+    setAnswers(newAnswers);
+    setStep(step + 1);
+  };
 
   const resetQuiz = () => {
     setOpen(false);
@@ -36,12 +28,12 @@ function App() {
   };
 
   let allCorrect = true;
-for (const q of questions) {
-  if (answers[q.id] !== q.correct) {
-    allCorrect = false;
-    break;
+  for (const q of questions) {
+    if (answers[q.id] !== q.correct) {
+      allCorrect = false;
+      break;
+    }
   }
-}
 
   return (
     <div className="App">
@@ -83,9 +75,10 @@ for (const q of questions) {
             ) : (
               <div className="results">
                 <h3>{allCorrect ? "✅ Верно!" : "❌ Есть ошибки"}</h3>
-                {questions.map(q => (
+                {questions.map((q) => (
                   <p key={q.id}>
-                    {q.text} - {answers[q.id] || "Нет ответа"} {answers[q.id] === q.correct ? "✅" : "❌"}
+                    {q.text} - {answers[q.id] || "Нет ответа"}{" "}
+                    {answers[q.id] === q.correct ? "✅" : "❌"}
                   </p>
                 ))}
                 <button className="btn-close" onClick={resetQuiz}>
